@@ -3282,22 +3282,38 @@ sub FinalResults {
 
 
     my $conclusion = "no_data"; ## v3.1 - add a default value
+    my $resab = "no_data";
+    my $respr = "no_data";
+    my $nbreada = 0;
+    my $covR = 0;
+    my $covL = 0;
+    my $repeatR = ".";
+    my $repeatL = ".";
+    my $nbreadR = 0; 
+    my $nbreadL = 0;
+    my $nbreadRF = 0; 
+    my $nbreadLF = 0;
+    my $infoR = "."; 
+    my $infoL = "."; 
+    my $PolyTAL = "."; 
+    my $PolyTAR = "."; 
+    
     for my $S ( sort keys %PRE ) {
         for my $TE ( keys %{$PRE{ $S }} ) {
-	    my $resab = $ABS{ $S }{ $TE };
-	    my $respr = $PRE{ $S }{ $TE };
-	    my $nbreada = $NBR{ $S }{ $TE };
+	    $resab = $ABS{ $S }{ $TE };
+	    $respr = $PRE{ $S }{ $TE };
+	    $nbreada = $NBR{ $S }{ $TE };
 	    chomp $nbreada;
-	    my $covR = $CR{ $S }{ $TE };
-	    my $covL = $CL{ $S }{ $TE };
-	    my $repeatR = $RR{ $TE };
-	    my $repeatL = $RL{ $TE };
+	    $covR = $CR{ $S }{ $TE };
+	    $covL = $CL{ $S }{ $TE };
+	    $repeatR = $RR{ $TE };
+	    $repeatL = $RL{ $TE };
 	    $matchR = $MR{ $S }{ $TE }; 
 	    $matchL = $ML{ $S }{ $TE }; 
-	    my $nbreadR = $CNR{ $S }{ $TE }; 
-	    my $nbreadL = $CNL{ $S }{ $TE };
-	    my $nbreadRF = $CNRF{ $S }{ $TE }; # MODIFIED 17/10/17
-	    my $nbreadLF = $CNLF{ $S }{ $TE }; # MODIFIED 17/10/17
+	    $nbreadR = $CNR{ $S }{ $TE }; 
+	    $nbreadL = $CNL{ $S }{ $TE };
+	    $nbreadRF = $CNRF{ $S }{ $TE }; # MODIFIED 17/10/17
+	    $nbreadLF = $CNLF{ $S }{ $TE }; # MODIFIED 17/10/17
 	    my $infoR = $IR{ $S }{ $TE }; 
 	    my $infoL = $IL{ $S }{ $TE }; 
 	    my $PolyTAL = $TAL{ "left" }{ $TE }; 
