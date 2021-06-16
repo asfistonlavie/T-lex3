@@ -746,7 +746,7 @@ sub MultiAlign(){
 		     }
 		 }
 	     }
-	     close DIR ;
+	     closedir DIR ;
 	    
 	    opendir (DIR, "$strains"); # Removed ../
 	    while (defined( my $strain_name = readdir (DIR))) {
@@ -940,7 +940,7 @@ sub MultiAlign(){
 		    close FA;
 		}
 	    }
-	    close DIR;	
+	    closedir DIR;	
 	}
 	
 	
@@ -1210,7 +1210,7 @@ sub combine_results {
         print "$item";
     }
 
-    close DIR;
+    closedir DIR;
     
     open(OUT, ">$path\/Tfreqs_output\/Tresults");
     
@@ -3280,7 +3280,7 @@ sub FinalResults {
 
 
 
-    my $conclusion;
+    my $conclusion = "no_data"; ## v3.1 - add a default value
     for my $S ( sort keys %PRE ) {
         for my $TE ( keys %{$PRE{ $S }} ) {
 	    my $resab = $ABS{ $S }{ $TE };
@@ -3406,11 +3406,11 @@ sub FreqEstimate {
 	open (IN,"Tresults");
 	while (<IN>) {
 	    if ($n > 0){
-		my @line=split(/\t/,$_);
-		$TE=$line[1];
-		$RA{$TE}=0;
-		$RPL{$TE}=0;
-		$RPR{$TE}=0;
+		my @line = split(/\t/,$_);
+		$TE = $line[1];
+		$RA{$TE} = 0;
+		$RPL{$TE} = 0;
+		$RPR{$TE} = 0;
 	    }
 	    $n++;
 	}
@@ -3422,9 +3422,9 @@ sub FreqEstimate {
 	while (<IN>) {
 	    if ($n >0){
         ($strain, $TE, $abs, $preL, $preR)=(split /\t/)[0,1,5,12,19];
-		$RA{$TE}=$RA{$TE}+$abs;
-		$RPL{$TE}=$RPL{$TE}+$preL;
-		$RPR{$TE}=$RPR{$TE}+$preR;
+		$RA{$TE}=$RA{$TE}+int($abs);
+		$RPL{$TE}=$RPL{$TE}+int($preL);
+		$RPR{$TE}=$RPR{$TE}+int($preR);
 	    }
 	    $n++;
 	}
