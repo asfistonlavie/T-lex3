@@ -2093,7 +2093,6 @@ sub generatefiles {
 	while ( $line = <$data>) {
 	chomp $line;
 
-	@ref;
 	my @fields = split "\t" , $line;
 		push @ref, \@fields;
 	}
