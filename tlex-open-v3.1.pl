@@ -2085,21 +2085,22 @@ sub generatefiles {
 	#print("python scripts\/view_2.py $TE_map $strainname $outputdir\/$strain");
 
 	# Mimic a view file from Tlex using pileup and reference fasta outputs
-	my @ref;
-	open(my $data, '<', $TE_map) or die "File can't be open: '$TE_map' $!\n";
+	
+	open($data, '<', $TE_map) or die "File can't be open: '$TE_map' $!\n";
 
 	my $line;
 
 	while ( $line = <$data>) {
 	chomp $line;
 
+	@ref;
 	my @fields = split "\t" , $line;
 		push @ref, \@fields;
 	}
 
 	close($data);
 
-	my $wd = "$outputdir\/$strain";
+	$wd = "$outputdir\/$strain";
 
 	my $readlength =  $maxReadLength;
 	my $readlength_m = $readlength+$buffer;
