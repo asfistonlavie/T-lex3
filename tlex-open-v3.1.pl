@@ -3366,6 +3366,7 @@ sub FinalResults {
 		}
 	    }
 		# MODIFIED 17/10/17
+	    print "$S\t$TE\t$resab\t$respr\t$conclusion\n";
 	    print OUT "$S\t$TE\t$resab\t$respr\t$conclusion\t$nbreada\t$matchL\t$idL$mL\t$PolyTAL\t$covL\t$repeatL\t$nbreadL\t$nbreadLF\t$matchR\t$idR$mR\t$PolyTAR\t$covR\t$repeatR\t$nbreadR\t$nbreadRF\n"; 
 	}
     }
