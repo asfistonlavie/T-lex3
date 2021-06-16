@@ -620,7 +620,7 @@ sub help {
 	print "\t\t\-limp \t\tmin. length of match required with the TE sequence in bp ( default: 15 )\n";  
 	print "\t\t\-minQ \t\tmin. quality Phred score for the read assembly ( default: 30 )\n"; 
 	print "\t\t\-processes \tnumber of processes (only used for the NGS data reformatting; default: 1)\n\n";
-    print "\t\t\-pairends \tpaired-end mapping ('yes' or 'no'; default: 'no'; that option requires NGS data such as <strain name>_reads<1 or 2>.fastq)\n\n";
+    	print "\t\t\-pairends \tpaired-end mapping ('yes' or 'no'; default: 'no'; that option requires NGS data such as <strain name>_reads<1 or 2>.fastq)\n\n";
 	
 	print "\t\t*For the TE absence detection: \n"; 
 	print "\t\t\-p \t\tlaunch only the absence detection approach\n";
@@ -630,17 +630,17 @@ sub help {
 	print "\t\t\-pairends \tpaired-end mapping ('yes' or 'no'; default: 'no'; that option requires NGS data such as <strain name>_reads<1 or 2>.fastq)\n\n";
 	
 	print "\t\t*For manually combine the results:\n";
-    print "\t\t\-combRes \tcombine the presence/absence results from one dataset\n";
+    	print "\t\t\-combRes \tcombine the presence/absence results from one dataset\n";
 	print "\t\t\-combData \tcombine the presence/absence results from several datasets stored in a different tlex output directories\n";
 	print "\t\t\-combAll \tcombine the frequency estimates, the analysis of the TE flanking regions and  the TSD detection\n";
-    print "\t\t*Estimate the TE frequency: \n";
-    print "\t\t\-freq \t\treturn the TE frequency based on the given strains\n";
-    print "\t\t\-minP \t\tminimum number of TE data based on given strains ( default: 1 )\n";
+    	print "\t\t*Estimate the TE frequency: \n";
+    	print "\t\t\-freq \t\treturn the TE frequency based on the given strains\n";
+    	print "\t\t\-minP \t\tminimum number of TE data based on given strains ( default: 1 )\n";
 	print "\t\t\-pooled \treturn the TE frequency based on pooled data (To use with the option -freq)\n";
 	print "\t\t\-minR \t\tminimum number of reads to calculate frequency ( default: 3 )\n";
-    print "\t\t\-maxR \t\tmaximum number of reads to calculate frequency ( default: 90 )\n";
-    print "\t\t*For TSD and multialignment detection:\n";
-    print "\t\t-align \t\treturn the multiple alignments\n"; 
+    	print "\t\t\-maxR \t\tmaximum number of reads to calculate frequency ( default: 90 )\n";
+    	print "\t\t*For TSD and multialignment detection:\n";
+    	print "\t\t-align \t\treturn the multiple alignments\n"; 
 	print "\t\t\-tsd \t\treturn the Target Site Duplication (TSD) for each given TE insertion detected as absent (use with -align & -p)\n";	
 	
 	die "\n";
@@ -682,7 +682,7 @@ sub MultiAlign(){
 	    chomp $TE;
 	    opendir (DIR, "$strains");
 	    my $nline=0;
-	    while (defined( my $strain_name = readdir (DIR))) {
+	    while (defined( my $strain_name = readdir (DIR) )) {
 		if ($strain_name !~ /\./) {
 		    if ($nline == 0){
 			$nline++;
@@ -704,10 +704,11 @@ sub MultiAlign(){
 		    }
 		}
 	    }
+	    closedir DIR;
 	}
 	system ("rm Talign\/presence_detection\/*.contig_ref");
-	close IN ;
-	closedir DIR;
+	close INT ;
+	
     }
     
     if( $type == 0 || $type == 2){
@@ -733,7 +734,7 @@ sub MultiAlign(){
 	    system("mkdir Talign\/absence_detection");
 		    
 	    opendir (DIR, "$strains");
-	    while (defined( my $strain_name = readdir (DIR))) {
+	    while (defined( my $strain_name = readdir (DIR) )) {
 		if ($strain_name !~ /\./) {
 		    if (-e "Tabsence\/${strain_name}/detection/results_gmapper_overjunction_nodup_format_nogap.fa.masked"){
 			    system ("cp Tabsence\/${strain_name}\/mapping/results_gmapper2merge Talign\/absence_detection\/Talign_${strain_name}.fasta");
